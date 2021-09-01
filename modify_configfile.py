@@ -58,6 +58,6 @@ def modify_after_load(max_date_log,csv_file_name,sql_script_name, increment_data
 
 	except Exception as e:
 			modify_log().exception(e)
-			send_mail(	to_address= 'mashrurs@bethss.com', 
-				subject='ALERT: Marketing Cloud Data Feed - Execution Error' , 
+			send_mail(	to_address= 'xxx@xxx.com', 
+				subject='ALERT: xxx Cloud Data Feed - Execution Error' , 
     			email_message = traceback.format_exc())
