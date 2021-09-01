@@ -7,7 +7,7 @@ import traceback, send_mail
 
 def read_from_database(sql_script_name, connection_string, interval, retries):  
     """Connect to source SQL Server database to read datab"""
-    log_location= '//CORP-ETLDB01/MKTCloudFeeds/log/extract_to_csv.log'
+    log_location= '//xxx/log/extract_to_csv.log'
     logger = logging.getLogger(__name__)
     logger.setLevel(logging.INFO)
     formatter = logging.Formatter('%(asctime)s:%(levelname)s : %(name)s : %(message)s')
@@ -43,7 +43,7 @@ def read_from_database(sql_script_name, connection_string, interval, retries):
 
 # data=  database_connection(sql_location='C:/Test/Python/sqlQuery/', 
 #                                 sql_script_name='product.sql', 
-#                                 connection_string='driver={SQL SERVER}; server=EUSVMSQL01;database=BSSData;trusted_connection = YES;',
+#                                 connection_string='driver={SQL SERVER}; server=xxxx;database=xxxx;trusted_connection = YES;',
 #                                 interval=2,retries=3)
 # print(data)
         
