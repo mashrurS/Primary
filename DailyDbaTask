@@ -1,0 +1,83 @@
+# cluster log
+Write-Host 'Printing xxx-xxx WFC log'
+Write-Host '*************************************'
+Get-winEvent -ComputerName xxxx.PRIME.LOCAL  -filterHashTable @{logname = 'Microsoft-Windows-FailoverClustering/Operational'; id=1641}| ft -autoSize -wrap |Out-String -Width 1000 |`
+Out-File "\\xxxxx\xxxxx\FailOverLog.txt"
+
+#Last Backup date except for xxxxx
+[System.Reflection.Assembly]::LoadWithPartialName("Microsoft.SqlServer.SMO") | out-null;
+$OutArray = @()
+$serverList = Get-Content '\\xxxxx\Server-Live.txt';
+foreach ($serverName in $serverList)
+{
+ Write-Host "Printing $serverName Last Full and Transaction Log Backup time"
+ Write-Host '**************************************************************'
+    $server = new-object ('Microsoft.SqlServer.Management.Smo.Server') $serverName; 
+    $Database = $server.databases | Where-Object { $_.name -ne 'tempdb' }| select Parent, Name, Lastbackupdate, LastDifferentialBackupDate, lastlogbackupdate, recoveryModel | ft -AutoSize | Out-String -Width 1000;
+    $outarray += $Database;
+    $Database = $null;
+} 
+$outarray | Out-File '\\xxxxx\LastBackup.txt';
+
+#SQL Log
+[System.Reflection.Assembly]::LoadWithPartialName('Microsoft.SqlServer.SMO') | out-null
+foreach($serverName in GC '\\sxxxx\Server-Live1.txt')
+{
+ Write-Host "Printing $serverName SQL Error Log"
+ Write-Host '*************************************'
+ $srv = new-object ('Microsoft.SqlServer.Management.Smo.Server') $serverName  
+ $srv.ConnectionContext.LoginSecure=$True; $srv.readerrorlog(1) |ft  -Wrap -Property Logdate, ProcessInfo, text -AutoSize| out-file "\\xxxx\$serverName _SqlErrorLog_yesterday.txt"
+ $srv.readerrorlog(0) |ft  -Wrap -Property Logdate, ProcessInfo, text -AutoSize| out-file "\\sxxxx\$serverName _SqlErrorLog.txt"
+}
+
+#Hard drive space detail
+$OutArray = @()
+$serverList = Get-Content '\\xxxxxx\Server-Live.txt'
+foreach($svr in $serverList )
+{
+ Write-Host "Printing $svr Hard Drive Space detail"
+ Write-Host '********************************************'
+$server = Get-CimInstance -ComputerName $svr -class win32_volume  | select @{LABEL='Server';EXPRESSION={($_.PSComputerName)}},`
+                                                                         @{LABEL='Drive';EXPRESSION={$_.DriveLetter}},` 
+                                                                         @{LABEL='Label';EXPRESSION={$_.label}},`
+                                                                         @{LABEL='Block Size';EXPRESSION={$_.BlockSize}},`
+                                                                         @{LABEL='Capacity (MB)';EXPRESSION={[decimal]("{0:N0}" -f($_.Capacity/1mb))}},`
+                                                                         @{LABEL='Free Space (MB)';EXPRESSION={[decimal]("{0:N0}"-f($_.freeSpace/1mb))}},`
+                                                                         @{LABEL='% Free';EXPRESSION={("{0,6:P0}" -f(($_.freeSpace/1mb) / ($_.Capacity/1mb)))}}| Format-Table -AutoSize -Wrap;
+$OutArray+= $server;
+$server = $null
+}
+$outarray | Out-File '\\sxxxxxLogfile\HardDriveSpaceDetail.txt';
+
+
+$OutArray = @()
+FOREACH($svr in GC '\xxxxx\Server-Live.txt')
+{ 
+ Write-Host "Printing $svr Last Rebooted time"
+ Write-Host '********************************************'
+$lastBootUpTime = Get-WmiObject Win32_OperatingSystem -ComputerName $svr | Select -ExpandProperty lastBootUpTime;
+$convertedLastBootUpTime = [System.Management.ManagementDateTimeConverter]::ToDateTime($LastBootUpTime) 
+$emailBody = $svr + ' was rebooted on: ' +$convertedLastBootUpTime
+$outarray += $emailBody
+$emailBody = $null;
+} 
+$OutArray | Out-File '\\sxxxxx\Logfile\LastRebootTime.txt'
+
+
+
+#Delete n Day old backup files
+$Now = Get-Date
+$Day = "2"
+$TargetFolder = "\\xxx\xxx\", "\\xxx\xx\"
+$LastWrite = $Now.addDays(-$Day)
+$Files = Get-Childitem $TargetFolder -Include $Extension -Recurse | Where {$_.LastWriteTime -le "$LastWrite"}
+Foreach ($File in $Files)
+{Write-host "Deleteing $File"
+Remove-Item $File.FullName | out-null}
+
+
+Clear-Host
+#Purge SSIS Logs for different packages
+$rowCount = 1000
+$fileName = '\\xxxxxx\WinSCP.LOG'
+(gc $fileName | Select-Object -Skip $rowCount) | Set-Content $fileName
