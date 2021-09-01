@@ -1,27 +1,21 @@
-USE MicrosoftDynamicsAX
-GO
---LOGISTICSPOSTALADDRESS	_WA_Sys_0000001C_343F9543
---LOGISTICSPOSTALADDRESS	_WA_Sys_0000001F_343F9543
---LOGISTICSPOSTALADDRESS	_WA_Sys_00000021_343F9543
---LOGISTICSPOSTALADDRESS	_WA_Sys_00000011_343F9543
---LOGISTICSPOSTALADDRESS	_WA_Sys_00000020_343F9543
-
-UPDATE STATISTICS dbo.SALESLINE I_359STATUSITEMIDX
-
-DBCC SHOW_STATISTICS (SALESLINE, p)
 
 
-UPDATE STATISTICS dbo.ILSGATEWAYQUEUE WITH FULLSCAN
+UPDATE STATISTICS dbo.xxxxx I_359STATUSITEMIDX
+
+DBCC SHOW_STATISTICS (xxxx, p)
+
+
+UPDATE STATISTICS dbo.xxxx WITH FULLSCAN
 GO
 
 
-UPDATE STATISTICS dbo.LOGISTICSPOSTALADDRESS WITH FULLSCAN-- _WA_Sys_00000020_343F9543 WITH FULLSCAN
+UPDATE STATISTICS dbo.xxxx WITH FULLSCAN-- _WA_Sys_00000020_343F9543 WITH FULLSCAN
 GO
 
-UPDATE STATISTICS dbo.LOGISTICSLOCATION WITH FULLSCAN
+UPDATE STATISTICS dbo.xxxx WITH FULLSCAN
 GO
 
-ALTER INDEX ALL ON dbo.MCRCOUPON REBUILD
+ALTER INDEX ALL ON dbo.xxx REBUILD
 GO
 
 
@@ -29,11 +23,11 @@ SELECT name AS index_name, object_id,
 index_id AS indexID,
 STATS_DATE(OBJECT_ID, index_id) AS StatsUpdated
 FROM sys.indexes
-WHERE OBJECT_ID = OBJECT_ID('dbo.SALESLINE')
+WHERE OBJECT_ID = OBJECT_ID('dbo.xxxx')
 GO
 
 SELECT name FROM sys.indexes
-WHERE OBJECT_ID = OBJECT_ID('Search.ProductAndLine')
+WHERE OBJECT_ID = OBJECT_ID('Search.xxxx')
 
 --Findout when all the stats were updated.
 SELECT 
@@ -41,11 +35,11 @@ SELECT
    ,[name] AS [StatisticName]
    ,COALESCE(cast((STATS_DATE([object_id],[stats_id])) AS VARCHAR(20)), 'NEVER') AS [StatisticUpdateDate]
 FROM sys.stats
-WHERE OBJECT_ID  = OBJECT_ID('SALESLINE')
-OR  object_id = OBJECT_ID('ILSGATEWAYQUEUE')
+WHERE OBJECT_ID  = OBJECT_ID('xxx')
+OR  object_id = OBJECT_ID('xxxx')
 
 
-OR object_id = OBJECT_ID('LOGISTICSLOCATION')
+OR object_id = OBJECT_ID('xxxxx')
 GO
 
 
@@ -57,11 +51,11 @@ GO
 --    ON s.object_id = sc.object_id AND s.stats_id = sc.stats_id  
 --INNER JOIN sys.columns AS c   
 --    ON sc.object_id = c.object_id AND c.column_id = sc.column_id  
---WHERE s.object_id = OBJECT_ID('Search.ProductAndLine'); 
+--WHERE s.object_id = OBJECT_ID('xxxx.xxxx'); 
 
 
 --SELECT * FROM sys.stats
---WHERE OBJECT_ID = OBJECT_ID('dbo.MCRCOUPON')
+--WHERE OBJECT_ID = OBJECT_ID('dbo.xxxx')
 
 
 SELECT 
@@ -79,7 +73,7 @@ FROM sys.dm_db_index_usage_stats us
 JOIN sys.indexes si
 ON us.index_id = si.index_id
 AND us.object_id = si.object_id
-WHERE si.object_id = OBJECT_ID('dbo.DIRPARTYLOCATIONROLE')
+WHERE si.object_id = OBJECT_ID('dbo.xxxxx')
 ORDER BY si.name
 
 
@@ -87,7 +81,7 @@ ORDER BY si.name
 
 SELECT * FROM dbo.MCRCOUPON
 
-DBCC SHOW_STATISTICS('dbo.MCRCOUPON'
+DBCC SHOW_STATISTICS('dbo.xxxx'
                      ,'_WA_Sys_00000001_304B73AF')
 
 					 SELECT o.name, i.name AS [Index Name],  
@@ -161,18 +155,7 @@ JOIN sys.objects as so on
 JOIN sys.schemas as sc on
     so.schema_id=sc.schema_id
 --WHERE 
---    sc.name= 'Warehouse'
---    and so.name='StockItemTransactions'
+--    sc.name= 'xxxx'
+--    and so.name='xxxx'
 ORDER BY 1, 2;
 GO
-
-
-CREATE NONCLUSTERED INDEX [<Name of Missing Index, sysname,>]
-ON [dbo].[SALESLINE] ([ITEMID],[SALESSTATUS],[INVENTDIMID],[DATAAREAID],[PARTITION])
-INCLUDE ([SALESID],[RECID])
-
-
-
-CREATE NONCLUSTERED INDEX [<Name of Missing Index, sysname,>]
-ON [dbo].[ILSGATEWAYQUEUE] ([BATCHSTATUS],[SEARCHSTRING],[XMLDOCDIRECTION],[DATAAREAID],[PARTITION])
-INCLUDE ([RECID])
