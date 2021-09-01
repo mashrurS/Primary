@@ -2,7 +2,7 @@
 DECLARE @date DATETIME = GETDATE()
 DECLARE @forDate  VARCHAR(100) = (SELECT REPLACE(CONVERT(VARCHAR(8), @date, 112)+CONVERT(VARCHAR(8), @date, 114), ':','')) 
 DECLARE @DbName VARCHAR(50)= 'WebSyncCSS'
-DECLARE @Pathbak VARCHAR(200) = '\\sqlmgr\TOMBSTONE\FIGURADO\'+ @DbName+@forDate +'.bak'
+DECLARE @Pathbak VARCHAR(200) = '\\xxx\xxx\xxxx\'+ @DbName+@forDate +'.bak'
 DECLARE @Sqlcommand VARCHAR(200)
 --DECLARE @Pathtrn VARCHAR(200) = 'F:\'+ @DbName+@forDate +'.trn'
 SELECT @Pathbak
@@ -24,13 +24,13 @@ EXEC (@Sqlcommand)
 
 
 
-EXECUTE SQLAdmin.[dbo].[DatabaseBackup] @Databases = 'ILS',
+EXECUTE SQLAdmin.[dbo].[DatabaseBackup] @Databases = 'xxxxx',
                                         @Directory = N'B:\MSSQL\Backup',
                                         @BackupType = 'FULL',
                                         @Compress = 'Y',
                                         @Verify = 'Y',
                                         @CleanupTime = 24,
-                                        @MirrorDirectory = N'\\sqlmgr\SQLBackups\',
+                                        @MirrorDirectory = N'\\xxxx\xxxx\',
                                         @MirrorCleanupTime = 72,
                                         @CheckSum = 'Y',
                                         @LogToTable = 'Y',
