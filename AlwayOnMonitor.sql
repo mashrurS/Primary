@@ -1,4 +1,4 @@
-:CONNECT SVCDBCLP-AG1L.PRIME.LOCAL
+:CONNECT 
 
 SELECT 
 	ar.replica_server_name, 
@@ -42,7 +42,7 @@ ORDER BY
 	adc.database_name;
 GO
 
-:Connect ECOMDBCLP-AG1L.PRIME.LOCAL
+:Connect 
 
 SELECT 
 	ar.replica_server_name, 
@@ -86,7 +86,7 @@ ORDER BY
 	adc.database_name;
 GO
 
-:Connect CGS-CIAXSQLAG
+:Connect
 
 SELECT 
 	ar.replica_server_name, 
