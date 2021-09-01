@@ -11,7 +11,7 @@ def send_mail(to_address, subject, email_message):
     logger = logging.getLogger(__name__)
     logger.setLevel(logging.INFO)
     formatter = logging.Formatter('%(asctime)s:%(levelname)s : %(name)s : %(message)s')
-    file_handler = logging.FileHandler('D:/MKTCloudFeeds/log/extract_to_csv.log')
+    file_handler = logging.FileHandler('xxxx/log/extract_to_csv.log')
     file_handler.setFormatter(formatter)
     logger.addHandler(file_handler)
 
@@ -31,7 +31,7 @@ def send_mail(to_address, subject, email_message):
                 {line_break_double}There was an error during the execution of the Marketing Cloud Data Feeds. Please check the error log.\
                 {line_break_double}Server: {getenv('COMPUTERNAME', 'defaultValue')}\
                 {line_break_double}App Execution Path: {getcwd()}\
-                {line_break_double}Log Path(s): \\CORP-ETLDB01\MKTCloudFeeds\log\extract_to_csv.log\
+                {line_break_double}Log Path(s): \\xxxxx\log\extract_to_csv.log\
                 {line_break_double}Raised Errors: "
 
 
@@ -39,7 +39,7 @@ def send_mail(to_address, subject, email_message):
 
     #send email via smtp
     try:
-        with smtplib.SMTP('smtp.office365.com', 587) as server:
+        with smtplib.SMTP('sxxxx', xxx) as server:
             server.ehlo()
             server.starttls()
             server.login(email_user_name, email_password)
