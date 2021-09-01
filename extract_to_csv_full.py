@@ -7,7 +7,7 @@ import database_connection as db_conn
 
 def extract_to_csv_full(out_location, sql_location, sql_script_name, connection_string):  
     
-    config_file = "D:/MKTCloudFeeds/configFile/source_config.json"
+    config_file = "xxxxx/configFile/source_config.json"
     
     with open (config_file, 'r') as file:
 	    list_values = load(file)
@@ -46,7 +46,7 @@ def extract_to_csv_full(out_location, sql_location, sql_script_name, connection_
         
     except Exception as e:
         logger.exception(e)
-        send_mail(	to_address= 'mashrurs@bethss.com', 
+        send_mail(	to_address= 'xxxx@xxxx.com', 
 				subject='ALERT: Marketing Cloud Data Feed - Execution Error' , 
     			email_message = traceback.format_exc())
 
