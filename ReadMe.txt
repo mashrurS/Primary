@@ -43,13 +43,13 @@ Parameters: All necessary parameters for this app is configured in configFile fo
 																"incrementDataType": "Data type"
 															 }
 			environment variable parameters: All the following sensitive information is stored under environment variables in xxx-xxx.
-											1. User Variable for BSSBIETLUSER: AUTO_EMAIL
+											1. User Variable for xxxx: AUTO_EMAIL
 											   variable description: This value is for sending error email to xxx@xxx.COM
-											2. User Variable for BSSBIETLUSE: AUTO_EMAIL_PASSWORD"
+											2. User Variable for xxxxx: AUTO_EMAIL_PASSWORD"
 											   variable description: This value is for authenticate smpt server "xxxxxx"
-											3. System Variables for CORP-ETLDB01: SFTP_HOST_NAME
+											3. System Variables xxxxx1: SFTP_HOST_NAME
 											   variable description: Outbound file upload location
-											4. System Variables for CORP-ETLDB01: SFTP_PASSWORD
+											4. System Variables for xxx-xxx: SFTP_PASSWORD
 											   variable description: Outbound file upload location password.
-											5. System Variables for CORP-ETLDB01: SFTP_USER_NAME
+											5. System Variables for xxxx-xxxx: SFTP_USER_NAME
 											   variable description: Outbound file upload location user name
