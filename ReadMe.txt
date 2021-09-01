@@ -52,13 +52,4 @@ Parameters: All necessary parameters for this app is configured in configFile fo
 											4. System Variables for CORP-ETLDB01: SFTP_PASSWORD
 											   variable description: Outbound file upload location password.
 											5. System Variables for CORP-ETLDB01: SFTP_USER_NAME
-											   variable description: Outbound file upload location user name.
-											   
-												
-	
-		
-
-				  
-				  
-				  
-
+											   variable description: Outbound file upload location user name
