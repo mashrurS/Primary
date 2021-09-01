@@ -11,7 +11,7 @@ def extract_to_csv_incremental(max_date_log,out_location, sql_location, sql_scri
     date_stamp = datetime.now().strftime("-%Y%m%d%H%M%S")+".csv"
     csv_file_name = sql_script_name.replace(".sql",date_stamp)
 
-    #max_date_log = "\\CORP-ETLDB01\MKTCloudFeeds\log\incremental_load_config.csv"
+    #max_date_log = "xxxx\incremental_load_config.csv"
     default_date = '1900-01-01 00:00:00 -04:00'
     
     try:
@@ -48,6 +48,6 @@ def extract_to_csv_incremental(max_date_log,out_location, sql_location, sql_scri
         
     except Exception as e:
             modify_log().exception(e)
-            send_mail(	to_address= 'mashrurs@bethss.com', 
+            send_mail(	to_address= 'xxx@xxx.com', 
 				subject='ALERT: Marketing Cloud Data Feed - Execution Error' , 
     			email_message = traceback.format_exc())
