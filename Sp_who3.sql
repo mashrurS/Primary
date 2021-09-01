@@ -199,7 +199,7 @@ CROSS APPLY sys.dm_exec_sql_text(c.most_recent_sql_handle) t
 ----AND '
 ORDER BY RequestDurationSec DESC
 
-:CONNECT CGS-CIAXSQL03 
+
 
 SET TRANSACTION isolation level READ uncommitted
 
@@ -376,7 +376,6 @@ WHERE s.program_name = 'Microsoft Dynamics AX'
 SELECT * FROM CTE
 
 
-:CONNECT CGS-CIAXMIG01
 
 
 SET TRANSACTION isolation level READ uncommitted
@@ -788,7 +787,6 @@ WHERE session_id = 104
 
 SELECT * FROM SYSSERVERSESSIONS
 
-kill 65
 
 
 Exec sp_who
