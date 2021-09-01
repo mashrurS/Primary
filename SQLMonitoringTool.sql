@@ -103,8 +103,8 @@ ORDER BY CollectionDate DESC
 DECLARE @StartDate DATE = DATEADD(DAY, -1,GETDATE())
 DECLARE @EndDate DATE = GETDATE()
 
-DECLARE @DatabaseName NVARCHAR(256) = N'AtlasCcom'
-DECLARE @ServerName NVARCHAR(256)  = N'COLO-ECOMDB02P'
+DECLARE @DatabaseName NVARCHAR(256) = N'xxxxxx'
+DECLARE @ServerName NVARCHAR(256)  = N'xxxx-xxxx'
 
 IF OBJECT_ID('tempdb..#TableGrowthDelta', 'U')
 	IS NOT NULL
@@ -156,8 +156,8 @@ GO
 
 
    --TOp table by table growth
-DECLARE @DatabaseName NVARCHAR(256) = N'ILS'
-DECLARE @ServerName NVARCHAR(256)  = N'CORP-SCLDB01P'
+DECLARE @DatabaseName NVARCHAR(256) = N'xxxxx'
+DECLARE @ServerName NVARCHAR(256)  = N'xxxxxx'
 
 IF OBJECT_ID('tempdb..#TableGrowthDelta', 'U')
 	IS NOT NULL
