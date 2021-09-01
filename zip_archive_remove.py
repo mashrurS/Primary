@@ -4,7 +4,7 @@ import logging, logging.handlers
 from send_mail import send_mail
 import zipfile,traceback
 
-log_location= "D:/MKTCloudFeeds/log/extract_to_csv.log"
+log_location= "xxxxx/log/extract_to_csv.log"
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 formatter = logging.Formatter('%(asctime)s:%(levelname)s : %(name)s : %(message)s')
@@ -51,6 +51,6 @@ def zip_output_files(source_path):
 
 	except Exception as e:
 		logger.exception(e)
-		send_mail(	to_address= 'mashrurs@bethss.com', 
+		send_mail(	to_address= 'xxxxxx.com', 
 				subject='ALERT: Marketing Cloud Data Feed - Execution Error' , 
     			email_message = traceback.format_exc())
