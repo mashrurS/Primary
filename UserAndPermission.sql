@@ -5,7 +5,7 @@ SELECT @@SERVERNAME AS [Server Name],
 FROM sys.server_principals sp
     JOIN sys.database_principals dp
         ON (sp.sid = dp.sid)
-WHERE dp.name  NOT IN ( 'alterian','ANDREWA','AndrewAl','Public', 'ChrisK','ci_user','ErinW', 'HZdan','InventoryUser', 'JohnH', 'KristinaH','LamH','LINDAJ', 'LJohnson','mannb', 'mattl','michellem','ShannonM')
+WHERE dp.name  NOT IN ()
 
 SELECT @@SERVERNAME AS [Server Name],
        DB_NAME() AS [Database Name],
@@ -16,7 +16,7 @@ FROM sys.database_role_members rm
         ON rm.role_principal_id = p.principal_id
     JOIN sys.database_principals m
         ON rm.member_principal_id = m.principal_id
-WHERE m.name NOT IN ( 'alterian','ANDREWA','AndrewAl','Public', 'ChrisK','ci_user','ErinW', 'HZdan','InventoryUser', 'JohnH', 'KristinaH','LamH','LINDAJ', 'LJohnson','mannb', 'mattl','michellem','ShannonM')
+WHERE m.name NOT IN ( )
 ORDER BY [Role Name]
 
 SELECT @@SERVERNAME AS [Server Name],
@@ -35,7 +35,7 @@ SELECT @@SERVERNAME AS [Server Name],
 FROM sys.database_permissions dp
 WHERE class IN ( 0, 1, 3 )
       AND minor_id = 0
-AND USER_NAME(grantee_principal_id) NOT IN ( 'alterian','ANDREWA','AndrewAl','Public', 'ChrisK','ci_user','ErinW', 'HZdan','InventoryUser', 'JohnH', 'KristinaH','LamH','LINDAJ', 'LJohnson','mannb', 'mattl','michellem','ShannonM')
+AND USER_NAME(grantee_principal_id) NOT IN ( )
 ORDER BY 'User/Role';
 
 GO
@@ -43,18 +43,8 @@ GO
 SELECT * FROM sys.database_permissions dp
 SELECT * FROM sys.database_principals m
 
-SELECT TABLE_SCHEMA, TABLE_NAME
-FROM INFORMATION_SCHEMA.TABLES
-WHERE TABLE_NAME IN ('Vendor', 'Brand')
 
-:CONNECT COLO-SVCDB01Q.PRIME.LOCAL
-USE LoyaltyService
-SELECT @@SERVERNAME AS [Server Name],
-sp.name AS [login Name], 
-dp.name AS [Mapped User Name]
-FROM sys.server_principals sp
-JOIN sys.database_principals dp ON (sp.sid = dp.sid)
-WHERE dp.name IN ('LoyaltySvc')
+
 
 SELECT @@SERVERNAME AS [Server Name],p.name AS [Role Name],
        m.name AS [Member Name]
@@ -63,7 +53,7 @@ FROM sys.database_role_members rm
         ON rm.role_principal_id = p.principal_id
     JOIN sys.database_principals m
         ON rm.member_principal_id = m.principal_id
-		WHERE m.name = 'LoyaltySvc'
+		WHERE m.name = 'xxxx'
 
 		SELECT @@SERVERNAME AS [Server Name],
     USER_NAME(grantee_principal_id) AS 'User'
