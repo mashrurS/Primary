@@ -6,7 +6,7 @@ from sftp_upload import sftp_upload
 from modify_log import modify_log
 import json, traceback
 
-config_file = "//CORP-ETLDB01/MKTCloudFeeds/configFile/source_config_adhoc_load.json"
+config_file = "//xxxxx/configFile/source_config_adhoc_load.json"
 
 try:
 
@@ -57,7 +57,7 @@ try:
 
 except Exception as e:
     modify_log().exception(e)
-    send_mail(	to_address= 'mashrurs@bethss.com', 
-				subject='ALERT: Marketing Cloud Data Feed - Execution Error' , 
+    send_mail(	to_address= 'xxx@xxx.com', 
+				subject='xxxx - Execution Error' , 
     			email_message = traceback.format_exc())
 
