@@ -1,7 +1,7 @@
 # cluster log
 Write-Host 'Printing xxx-xxx WFC log'
 Write-Host '*************************************'
-Get-winEvent -ComputerName xxxx.PRIME.LOCAL  -filterHashTable @{logname = 'Microsoft-Windows-FailoverClustering/Operational'; id=1641}| ft -autoSize -wrap |Out-String -Width 1000 |`
+Get-winEvent -ComputerName xxxx.123456.LOCAL  -filterHashTable @{logname = 'Microsoft-Windows-FailoverClustering/Operational'; id=1641}| ft -autoSize -wrap |Out-String -Width 1000 |`
 Out-File "\\xxxxx\xxxxx\FailOverLog.txt"
 
 #Last Backup date except for xxxxx
