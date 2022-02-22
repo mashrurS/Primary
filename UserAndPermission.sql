@@ -73,7 +73,7 @@ GO
 EXEC sp_change_users_login @Action = 'Report';
 GO
 
-EXEC sp_change_users_login 'update_one', 'searchApp', 'searchApp';
+EXEC sp_change_users_login 'update_one', 'asdfasdf', 'asdfasdf';
 GO
 
 
@@ -103,7 +103,7 @@ select * from INFORMATION_SCHEMA.SCHEMATA
 order by SCHEMA_NAME DESC
 
 
-EXEC AS user = 'CI826\rajyalakshmic_ex'
+EXEC AS user = 'asdfasdfasdf'
 
 
 SELECT SUSER_NAME()
