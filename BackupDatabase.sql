@@ -1,7 +1,7 @@
 
 DECLARE @date DATETIME = GETDATE()
 DECLARE @forDate  VARCHAR(100) = (SELECT REPLACE(CONVERT(VARCHAR(8), @date, 112)+CONVERT(VARCHAR(8), @date, 114), ':','')) 
-DECLARE @DbName VARCHAR(50)= 'WebSyncCSS'
+DECLARE @DbName VARCHAR(50)= '12345'
 DECLARE @Pathbak VARCHAR(200) = '\\xxx\xxx\xxxx\'+ @DbName+@forDate +'.bak'
 DECLARE @Sqlcommand VARCHAR(200)
 --DECLARE @Pathtrn VARCHAR(200) = 'F:\'+ @DbName+@forDate +'.trn'
