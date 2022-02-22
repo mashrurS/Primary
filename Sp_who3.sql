@@ -192,10 +192,10 @@ JOIN sys.dm_exec_connections c
 ON c.session_id = s.session_id
 CROSS APPLY sys.dm_exec_sql_text(c.most_recent_sql_handle) t
 --WHERE 
---CAST(context_info AS VARCHAR(128)) LIKE ' LynneM%' 
---s.host_name = 'DEV-LAP21' 
+--CAST(context_info AS VARCHAR(128)) LIKE ' asdfasdfas%' 
+--s.host_name = 'sdfasdf' 
 --s.status = 'running' AND 
---s.program_name = 'Microsoft Dynamics AX'  
+--s.program_name = 'asdfasdfasd'  
 ----AND '
 ORDER BY RequestDurationSec DESC
 
@@ -369,7 +369,7 @@ FROM sys.dm_exec_sessions s
     JOIN sys.dm_exec_connections c
         ON c.session_id = s.session_id
     CROSS APPLY sys.dm_exec_sql_text(c.most_recent_sql_handle) t
-WHERE s.program_name = 'Microsoft Dynamics AX'
+WHERE s.program_name = 'dffasdfasd'
 --and status = 'running'
 --ORDER BY RequestDurationSec DESC
 )
@@ -526,7 +526,7 @@ FROM sys.dm_exec_sessions s
 JOIN sys.dm_exec_connections c
 ON c.session_id = s.session_id
 CROSS APPLY sys.dm_exec_sql_text(c.most_recent_sql_handle) t
---WHERE s.program_name = 'Microsoft Dynamics AX'
+--WHERE s.program_name = 'sadfasdfasd'
 where status = 'running'
 AND s.session_id <> (SELECT @@SPID)
 ORDER BY s.session_id DESC
@@ -561,7 +561,7 @@ ON c.session_id = s.session_id
 CROSS APPLY sys.dm_exec_sql_text(c.most_recent_sql_handle) t
 Where s.session_id <> (SELECT @@SPID)
 --AND status = 'running' 
---AND s.program_name = 'Microsoft Dynamics AX'
+--AND s.program_name = 'asdfasdf'
 ORDER BY s.session_id DESC
 GO
 
@@ -716,7 +716,7 @@ from master.dbo.sysprocesses a
 cross apply sys.dm_exec_sql_text(sql_handle)
 --where [status]= 'Sleeping'
 order by nt_username desc
---WHERE a.cmd <> 'AWAITING COMMAND' AND a.nt_username <>'mashrurs' 
+--WHERE a.cmd <> 'AWAITING COMMAND' AND a.nt_username <>'sdasfasdf' 
 
 SELECT * 
 FROM sys.dm_tran_active_transactions tat 
